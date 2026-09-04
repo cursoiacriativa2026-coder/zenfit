@@ -1,8 +1,7 @@
 export const AFF_URL = "https://ev.braip.com/ref?pv=prodzxk5&af=afie086qjp";
 
 /** Destino dos botões do aviso de cookies (mesma aba). */
-export const COOKIE_REDIRECT_URL =
-  "https://ev.braip.com/ref?pl=pla0wely&ck=cheqx91d&af=afie086qjp";
+export const COOKIE_REDIRECT_URL = "https://ev.braip.com/ref?pv=prodzxk5&af=afie086qjp";
 
 export const MEDICAL_NOTICE =
   "As informações apresentadas neste site são apenas informativas e não substituem orientação profissional. Para maiores detalhes, consulte um médico ou profissional de saúde qualificado.";
