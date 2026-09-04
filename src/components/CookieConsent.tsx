@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useBodyLock } from "../lib/hooks";
+import { COOKIE_REDIRECT_URL } from "../lib/site";
 import { Icon } from "./ui";
 
 export function CookieConsent({
@@ -24,6 +25,13 @@ export function CookieConsent({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onDismiss]);
+
+  /** Salva o consentimento e leva o usuário ao checkout na mesma aba. */
+  const chooseAndRedirect = (choice: "aceitar" | "fechar") => {
+    if (choice === "aceitar") onAccept();
+    else onDismiss();
+    window.location.assign(COOKIE_REDIRECT_URL);
+  };
 
   if (!open) return null;
 
@@ -65,14 +73,14 @@ export function CookieConsent({
             <button
               ref={acceptRef}
               type="button"
-              onClick={onAccept}
+              onClick={() => chooseAndRedirect("aceitar")}
               className="btn-cta rounded-xl bg-pine px-5 py-3.5 text-sm font-extrabold uppercase tracking-[0.14em] text-cream shadow-[0_14px_30px_-14px_rgb(20_86_62/0.9)] hover:bg-forest"
             >
               Aceitar
             </button>
             <button
               type="button"
-              onClick={onDismiss}
+              onClick={() => chooseAndRedirect("fechar")}
               className="btn-cta rounded-xl bg-clay px-5 py-3.5 text-sm font-extrabold uppercase tracking-[0.14em] text-cream shadow-[0_14px_30px_-14px_rgb(194_74_56/0.9)] hover:bg-[#a83c2c]"
             >
               Fechar
